@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-const fs = require('fs');
+import { calculateMetrics } from './src/calculate.js';
+import fs from 'fs';
+
 
 const main = () => {
   const rawData = fs.readFileSync('data.json', 'utf-8');
   const data = JSON.parse(rawData);
 
-  console.log(data);
+  const metrics = calculateMetrics(data);
 }
-
 main();
