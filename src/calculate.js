@@ -12,13 +12,15 @@ const calculateMetrics = (data) => {
   const expenses = calculateSum(accounts, { account_category: 'expense' });
 
   const sales = calculateSum(accounts, { account_type: 'sales', value_type: 'debit' });
-
   const grossProfitMargin = (sales / revenue) * 100;
+
+  const netProfitMargin = ((revenue - expenses) / revenue) * 100;
 
   return {
     revenue,
     expenses,
     grossProfitMargin,
+    netProfitMargin
   };
 };
 
