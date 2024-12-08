@@ -35,12 +35,26 @@ const calculateMetrics = (data) => {
       }
     );
 
+  const liabilities = calculateSum(accounts,
+    {
+      account_category: 'liability',
+      value_type: 'credit',
+      account_type: ['current', 'current_accounts_payable']
+    }) - calculateSum(accounts,
+      {
+        account_category: 'liability',
+        value_type: 'debit',
+        account_type: ['current', 'current_accounts_payable']
+      }
+    );
+
   return {
     revenue,
     expenses,
     grossProfitMargin,
     netProfitMargin,
-    assets
+    assets,
+    liabilities
   };
 };
 
