@@ -8,7 +8,7 @@ const calculateSum = (data, filters) => {
           : account[key] === filters[key]
       )
     )
-    .reduce((sum, account) => sum + account.total_value, 0);
+    .reduce((sum, account) => sum + account.total_value, 0) || 0;
 };
 
 const calculateMetrics = (data) => {
@@ -18,18 +18,19 @@ const calculateMetrics = (data) => {
   const expenses = calculateSum(accounts, { account_category: 'expense' });
 
   const sales = calculateSum(accounts, { account_type: 'sales', value_type: 'debit' });
-  const grossProfitMargin = (sales / revenue) * 100;
 
-  const netProfitMargin = ((revenue - expenses) / revenue) * 100;
+  const grossProfitMargin = revenue ? (sales / revenue) * 100 : 0;
+
+  const netProfitMargin = revenue ? ((revenue - expenses) / revenue) * 100 : 0;
 
   const assets = calculateSum(accounts,
     {
-      account_category: 'asset',
+      account_category: 'assets',
       value_type: 'debit',
       account_type: ['current', 'bank', 'current_accounts_receivable']
     }) - calculateSum(accounts,
       {
-        account_category: 'asset',
+        account_category: 'assets',
         value_type: 'credit',
         account_type: ['current', 'bank', 'current_accounts_receivable']
       }
@@ -48,7 +49,7 @@ const calculateMetrics = (data) => {
       }
     );
 
-  const workingCapitalRatio = assets / liabilities * 100;
+  const workingCapitalRatio = liabilities ? (assets / liabilities) * 100 : 0;
 
   return {
     revenue,
