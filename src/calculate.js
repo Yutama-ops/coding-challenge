@@ -1,7 +1,13 @@
 // Helper function to calculate the sum of account values based on filters
 const calculateSum = (data, filters) => {
   return data
-    .filter(account => Object.keys(filters).every(key => account[key] === filters[key]))
+    .filter(account =>
+      Object.keys(filters).every(key =>
+        Array.isArray(filters[key])
+          ? filters[key].includes(account[key])
+          : account[key] === filters[key]
+      )
+    )
     .reduce((sum, account) => sum + account.total_value, 0);
 };
 
@@ -15,6 +21,8 @@ const calculateMetrics = (data) => {
   const grossProfitMargin = (sales / revenue) * 100;
 
   const netProfitMargin = ((revenue - expenses) / revenue) * 100;
+
+
 
   return {
     revenue,
