@@ -22,13 +22,25 @@ const calculateMetrics = (data) => {
 
   const netProfitMargin = ((revenue - expenses) / revenue) * 100;
 
-
+  const assets = calculateSum(accounts,
+    {
+      account_category: 'asset',
+      value_type: 'debit',
+      account_type: ['current', 'bank', 'current_accounts_receivable']
+    }) - calculateSum(accounts,
+      {
+        account_category: 'asset',
+        value_type: 'credit',
+        account_type: ['current', 'bank', 'current_accounts_receivable']
+      }
+    );
 
   return {
     revenue,
     expenses,
     grossProfitMargin,
-    netProfitMargin
+    netProfitMargin,
+    assets
   };
 };
 

@@ -17,6 +17,30 @@ test('calculate metrics', () => {
         "account_type": "sales",
         "total_value": 500.0,
       },
+      {
+        "account_category": 'asset',
+        "value_type": 'debit',
+        "account_type": 'current',
+        "total_value": 100.0,
+      },
+      {
+        "account_category": 'asset',
+        "value_type": 'debit',
+        "account_type": 'bank',
+        "total_value": 100.0,
+      },
+      {
+        "account_category": 'asset',
+        "value_type": 'debit',
+        "account_type": 'current_accounts_receivable',
+        "total_value": 100.0,
+      },
+      {
+        "account_category": 'asset',
+        "value_type": 'credit',
+        "account_type": 'current_accounts_receivable',
+        "total_value": 100.0,
+      },
     ]
   };
 
@@ -26,4 +50,5 @@ test('calculate metrics', () => {
   expect(metrics.expenses).toBe(500);
   expect(metrics.grossProfitMargin).toBe(50);
   expect(metrics.netProfitMargin).toBe(50);
+  expect(metrics.assets).toBe(200);
 });
