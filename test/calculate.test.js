@@ -63,7 +63,7 @@ test('calculate metrics', () => {
         "account_category": 'liability',
         "value_type": 'debit',
         "account_type": 'current',
-        "total_value": 50.0,
+        "total_value": 100.0,
       },
     ]
   };
@@ -75,5 +75,6 @@ test('calculate metrics', () => {
   expect(metrics.grossProfitMargin).toBe(50);
   expect(metrics.netProfitMargin).toBe(50);
   expect(metrics.assets).toBe(200);
-  expect(metrics.liabilities).toBe(150);
+  expect(metrics.liabilities).toBe(100);
+  expect(metrics.workingCapitalRatio).toBe(200);
 });

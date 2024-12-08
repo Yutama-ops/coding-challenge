@@ -48,13 +48,16 @@ const calculateMetrics = (data) => {
       }
     );
 
+  const workingCapitalRatio = assets / liabilities * 100;
+
   return {
     revenue,
     expenses,
     grossProfitMargin,
     netProfitMargin,
     assets,
-    liabilities
+    liabilities,
+    workingCapitalRatio,
   };
 };
 
