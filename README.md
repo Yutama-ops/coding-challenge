@@ -1,8 +1,37 @@
-# RewardPay Coding Challenge
+# RewardPay Coding Challenge\
+
+## Installation
+
+On root directory run:
+
+```
+npm install
+```
 
 ## Running the program
 
+Using terminal, navigate to the root directory and run:
+
+```
 ./myChallenge.js
+```
+
+## Run tests
+
+```
+npm test
+```
+
+## Dependencies
+
+- Node.js (22.12.0)
+- Jest
+- @babel/preset-env
+- babel-jest
+
+---
+
+<br>
 
 # Challenge Instructions
 
